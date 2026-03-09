@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --variant-dark: :where(.dark, .dark *);
+}
+
+/* 1. BRAND COLORS (Default: Light Mode) */
+:root {
+  --background: #f6f2e6; /* Brand Cream */
+  --foreground: #333333; /* Brand Dark Grey */
+  --header-bg: rgba(246, 242, 230, 0.8);
+}
+
+/* 2. DARK MODE OVERRIDES */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --header-bg: rgba(10, 10, 10, 0.8);
+}
+
+@layer base {
+  body {
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    @apply transition-colors duration-300 antialiased;
+  }
+
+  /* Force consistent text color for all basic elements */
+  h1, h2, h3, p, span, a, div {
+    color: inherit;
+  }
+
+  /* Fix for Orange Button text visibility */
+  .bg-\[\#ff6600\], .bg-\[\#ff6600\] * {
+    color: white !important;
+  }
+}
+
+.nav-glass {
+  @apply fixed top-0 left-0 w-full z-50 h-20 backdrop-blur-xl border-b;
+  background-color: var(--header-bg) !important;
+  border-color: rgba(0, 0, 0, 0.05);
+}
